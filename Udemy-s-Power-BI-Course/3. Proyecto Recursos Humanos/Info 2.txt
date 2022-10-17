@@ -1,0 +1,5 @@
+Pregunta con uso de un sinónimo definido:
+evaluación promedio por empleado
+
+Pregunta sin uso de sinónimos definidos:
+evaluación promedio por nombre jefe

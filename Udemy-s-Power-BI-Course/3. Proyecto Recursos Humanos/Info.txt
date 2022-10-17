@@ -1,0 +1,23 @@
+Medida en tabla de empleados
+Total Empleados = COUNTROWS('Tabla Empleados')
+
+Medida en tabla de sueldos
+Sueldo Promedio = AVERAGE('Tabla Sueldo'[Sueldo])
+
+Medida en tabla de evaluaciones
+Evaluación Promedio = AVERAGE('Tabla Evaluacion'[Evaluación])
+
+Columna para la edad
+Edad = INT(YEARFRAC('Tabla Empleados'[Nacimiento], TODAY()))
+
+Medida en tabla de empleados
+Edad Promedio = AVERAGE('Tabla Empleados'[Edad])
+
+Columna para grupo de edad
+Grupo Edad = IF('Tabla Empleados'[Edad] <= 30, "20 - 30", IF('Tabla Empleados'[Edad] <= 40, "30 - 40", IF('Tabla Empleados'[Edad] <= 50, "40 - 50", IF('Tabla Empleados'[Edad] <= 60, "50 - 60", IF('Tabla Empleados'[Edad] <= 70, "60 - 70", "70+")))))
+
+Columna para grupo de sueldos
+Grupo Sueldo = IF('Tabla Sueldo'[Sueldo] <= 40000, "0-40K", IF('Tabla Sueldo'[Sueldo] <= 60000 , "40K - 60K", IF('Tabla Sueldo'[Sueldo] <= 80000 , "60K - 80K", IF('Tabla Sueldo'[Sueldo] <= 100000 , "80K - 100K", "100K+"))))
+
+Columna para grupo de evaluaciones
+Grupo Evaluacion = IF('Tabla Evaluacion'[Evaluación] <= 6, "0 - 6", IF('Tabla Evaluacion'[Evaluación] <= 7, "6 - 7", IF('Tabla Evaluacion'[Evaluación] <= 8, "7 - 8", IF('Tabla Evaluacion'[Evaluación] <= 9, "8 - 9", "9 - 10"))))

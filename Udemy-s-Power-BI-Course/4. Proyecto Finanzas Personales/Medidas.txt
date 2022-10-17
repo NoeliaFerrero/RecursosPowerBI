@@ -1,0 +1,31 @@
+Se crean las siguientes medidas:
+Total Finanzas = SUM(TablaFinanzas[Cantidad])
+Total Ingresos = CALCULATE([Total Finanzas], TablaFinanzas[Tipo] = "Ingresos")
+Total Gastos = CALCULATE([Total Finanzas], TablaFinanzas[Tipo] = "Gastos")
+
+Total Expectativas = SUM(TablaExpectativas[Cantidad])
+Total Metas = CALCULATE([Total Expectativas], TablaExpectativas[Tipo] = "Meta")
+Total Presupuesto = CALCULATE([Total Expectativas], TablaExpectativas[Tipo] = "Presupuesto")
+
+Y ciertas cosas como indicar el total de ingresos, total de gastos, total de metas y total de presupuesto se realiza de 2 formas (vía medidas y filtros; vía solo medida)
+
+
+Utilidad = [Total Ingresos] - [Total Gastos]
+Utilidad Esperada = [Total Metas] - [Total Presupuesto]
+
+Medidas creadas en una tabla vacía (Se usa la opción Especificar Datos)
+Cuota Ingresos = [Total Ingresos] / [Total Metas]
+Cuota Gastos = [Total Gastos] / [Total Presupuesto]
+Cuota Utilidad = [Utilidad] / [Utilidad Esperada]
+
+
+
+Nuevas Medidas
+Saldo = CALCULATE([Utilidad], FILTER(ALL(TablaFinanzas), TablaFinanzas[Fecha] <= MAX(TablaFinanzas[Fecha])))
+Saldo Esperado = CALCULATE([Utilidad Esperada], FILTER(ALL(TablaExpectativas), TablaExpectativas[Fecha] <= MAX(TablaExpectativas[Fecha])))
+
+Cuota Saldo = [Saldo] / [Saldo Esperado]
+
+
+Fecha de Actualización (Se crea una consulta en blanco):
+= #table(type table[Última Actualización = datetime], {{DateTime.LocalNow()}})
